@@ -52,10 +52,11 @@ defmodule Vitex.MixProject do
 
   defp package do
     [
-      maintainers: ["Derrick Reimer"],
+      maintainers: ["Andrés Gutiérrez"],
       licenses: ["MIT"],
       links: links(),
-      files: ~w(priv/vitejs/vitePlugin.js priv/vitejs/vitePlugin.d.ts)
+      files:
+        ~w(lib priv/vitejs/vitePlugin.js priv/vitejs/vitePlugin.d.ts mix.exs README.md LICENSE.md)
     ]
   end
 
@@ -69,14 +70,13 @@ defmodule Vitex.MixProject do
       # {:inertia, "~> 2.4", optional: true},
       {:inertia,
        git: "https://github.com/andresgutgon/inertia-phoenix.git",
-       ref: "64495aeabed79d191dd1384c743e938420384623"}
+       ref: "5c557d36af7082449236bc32ffbda5f49949d0a2"}
     ]
   end
 
   defp aliases do
     [
-      compile: [&copy_js/1, "compile"],
-      "hex.publish": [&copy_js/1, "hex.publish"]
+      compile: [&copy_js/1, "compile"]
     ]
   end
 
