@@ -1,4 +1,4 @@
-defmodule Inertia.Assets.Helper do
+defmodule Vitex.Assets.Helper do
   @moduledoc """
   Phoenix component helper for rendering Inertia assets (JS and CSS).
 
@@ -8,10 +8,10 @@ defmodule Inertia.Assets.Helper do
 
   use Phoenix.Component
 
-  alias Inertia.Assets.{Config, Manifest, Resolver}
+  alias Vitex.Assets.{Config, Manifest, Resolver}
 
   @doc """
-  Renders the required assets for Inertia pages.
+  Renders the required assets for ViteJS assets. Phoenix pages.
 
   ## Assigns
 
@@ -20,7 +20,7 @@ defmodule Inertia.Assets.Helper do
 
   Example:
 
-      <.inertia_assets js={["js/app.tsx"]} preload />
+      <.vitex_assets js={["js/app.tsx"]} preload />
   """
   attr :js, :list, required: true
   attr :preload, :boolean, default: false

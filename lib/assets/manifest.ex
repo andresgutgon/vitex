@@ -1,4 +1,4 @@
-defmodule Inertia.Assets.Manifest do
+defmodule Vitex.Assets.Manifest do
   @moduledoc """
   Reads and resolves manifest.json files for asset management.
   Agnostic of bundler and adapter.
@@ -6,12 +6,12 @@ defmodule Inertia.Assets.Manifest do
   Supports caching and runtime config merging.
   """
 
-  alias Inertia.Assets.Config
+  alias Vitex.Assets.Config
 
-  @default_manifest_name "assets_manifest.json"
+  @default_manifest_name "vite_manifest.json"
   @default_manifest_path "priv/static/assets"
-  @persistent_manifest_key :inertia_assets_manifest
-  @persistent_opts_key :inertia_assets_opts
+  @persistent_manifest_key :vitex_assets_manifest
+  @persistent_opts_key :vitex_assets_opts
 
   @type manifest :: map()
   @type opts :: keyword()
