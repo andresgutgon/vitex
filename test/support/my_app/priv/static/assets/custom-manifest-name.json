@@ -1,0 +1,23 @@
+{
+  "js/Pages/HomePage/index.tsx": {
+    "file": "assets/index.BZUM_WG5.js",
+    "name": "index",
+    "src": "js/Pages/HomePage/index.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "js/app.tsx"
+    ]
+  },
+  "js/app.tsx": {
+    "file": "assets/custom-manifest-name.BjbglPmr.js",
+    "name": "custom-manifest-name",
+    "src": "js/app.tsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "js/Pages/HomePage/index.tsx"
+    ],
+    "css": [
+      "assets/custom-manifest-name.CC0PCmj2.css"
+    ]
+  }
+}

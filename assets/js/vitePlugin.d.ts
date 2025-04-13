@@ -1,15 +1,15 @@
 import { Plugin } from 'vite'
 
-export interface InertiaPhoenixPluginOptions {
+export interface VitexPluginOptions {
   /**
    * Path to your SSR entry file
-   * Example: './resources/js/ssr.tsx'
+   * Example: './js/ssr.tsx'
    */
-  entrypoint: string
+  inertiaSSREntrypoint: string
 }
 
 /**
- * Inertia Phoenix Vite Plugin
+ * Vitex Plugin
  * Provides SSR support for Inertia.js + Phoenix during development
  */
-export default function inertiaPhoenixPlugin(options: InertiaPhoenixPluginOptions): Plugin
+export default function vitexPlugin(options: VitexPluginOptions): Plugin
