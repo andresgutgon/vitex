@@ -1,0 +1,23 @@
+{
+  "js/Pages/HomePage/index.tsx": {
+    "file": "assets/index.BZUM_WG5.js",
+    "name": "index",
+    "src": "js/Pages/HomePage/index.tsx",
+    "isDynamicEntry": true,
+    "imports": ["js/app.tsx"]
+  },
+  "js/app.tsx": {
+    "file": "assets/app.BjbglPmr.js",
+    "name": "app",
+    "src": "js/app.tsx",
+    "isEntry": true,
+    "dynamicImports": ["js/Pages/HomePage/index.tsx"],
+    "css": ["assets/app.CC0PCmj2.css"]
+  },
+  "js/other.tsx": {
+    "file": "assets/other.BjbglPmr.js",
+    "name": "other",
+    "src": "js/other.tsx",
+    "isEntry": true
+  }
+}

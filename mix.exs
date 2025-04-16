@@ -67,16 +67,21 @@ defmodule Vitex.MixProject do
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:phoenix, "~> 1.7"},
       {:phoenix_html, ">= 3.0.0"},
-      # {:inertia, "~> 2.4", optional: true},
+      {:my_app, path: "test/support/my_app", only: :test},
+      # Missing response here:
+      # https://github.com/PSPDFKit-labs/bypass/issues/142#issuecomment-2809693599
+      {:bypass, github: "pspdfkit-labs/bypass", branch: "master", only: :test},
+      # {:inertia, "~> 2.3", optional: true}
       {:inertia,
        git: "https://github.com/andresgutgon/inertia-phoenix.git",
-       ref: "5c557d36af7082449236bc32ffbda5f49949d0a2"}
+       ref: "dc4ec838880ab24958f95ec4a360f6f647dbb8fa"}
     ]
   end
 
   defp aliases do
     [
-      compile: [&copy_js/1, "compile"]
+      compile: [&copy_js/1, "compile"],
+      "hex.publish": [&copy_js/1, "hex.publish"]
     ]
   end
 

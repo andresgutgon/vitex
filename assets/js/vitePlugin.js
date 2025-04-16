@@ -1,8 +1,4 @@
-const jsonResponse = (
-  res,
-  statusCode,
-  data,
-) => {
+const jsonResponse = (res, statusCode, data) => {
   res.statusCode = statusCode
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(data))
@@ -31,19 +27,19 @@ const jsonMiddleware = (req, res, next) => {
  * @param {Object} options
  * @param {string} options.entrypoint - Path to your SSR entry file (Ex.: "./js/ssr.tsx")
  */
-export default function inertiaPhoenixPlugin({ entrypoint }) {
+export default function vitexPlugin({ inertiaSSREntrypoint }) {
   return {
-    name: 'inertia-phoenix',
+    name: 'vitex',
     configureServer(server) {
-      if (!entrypoint) {
+      if (!inertiaSSREntrypoint) {
         throw new Error(
-          `[inertia-phoenix] Missing required \`entrypoint\` in plugin options.
+          `[vitex] Missing required \`inertiaSSREntrypoint\` in plugin options.
 
 Please pass the path to your SSR entry file.
 
 Example:
-  import inertiaPhoenixPlugin from '@inertia-phoenix/vitePlugin'
-  inertiaPhoenixPlugin({ entrypoint: './js/ssr.{jsx|tsx}' })`
+  import vitexPlugin from '../../deps/vitex/priv/vitejs/vitePlugin.js'
+  vitexPlugin({ inertiaSSREntrypoint: './js/ssr.{jsx|tsx}' })`,
         )
       }
 
@@ -58,8 +54,8 @@ Example:
 
         jsonMiddleware(req, res, async () => {
           try {
-            const { render } = await server.ssrLoadModule(entrypoint)
-            const page = (await render(req.body))
+            const { render } = await server.ssrLoadModule(inertiaSSREntrypoint)
+            const page = await render(req.body)
             jsonResponse(res, 200, page)
           } catch (e) {
             if (e instanceof Error) {
