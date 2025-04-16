@@ -1,4 +1,4 @@
-![CI](https://github.com/andresgutgon/vitex/actions/workflows/ci.yml/badge.svg?branch=main)
+[![CI](https://github.com/andresgutgon/vitex/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/andresgutgon/vitex/actions/workflows/ci.yml)
 
 # Vitex
 
