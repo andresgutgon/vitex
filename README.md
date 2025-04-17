@@ -10,12 +10,13 @@ Vitex is a helper library that integrates Vite with Phoenix Framework, offering 
 
 - [✅ Features](#-features)
 - [🚀 Installation](#-installation)
-- [Configure ViteJS assets](#configure-vitejs-assets)
+- [Configure Vitex](#configure-vitex)
 - [Add Vitex.HTML module](#add-vitexhtml-module)
 - [Configuring ViteJS in your Phoenix app](#configuring-vitejs-in-your-phoenix-app)
 - [Using ViteJS Inertia Adapter](#using-vitejs-inertia-adapter)
 
 ## ✅ Features
+
 It makes working with Vite in Phoenix easier by:
 
 1. Generating the correct asset tags in dev and prod modes `<.vitex_assets js={["./js/app.tsx"]} />`
@@ -34,37 +35,50 @@ def deps do
 end
 ```
 
-## Configure ViteJS assets
+## Configure Vitex
 
-Add the following to your `config/config.exs`:
+Add the following to your `lib/my_app/application.ex` file. Only `dev_mode` and `endpoint` are required. The rest are optional.
 
 ```elixir
-# config/config.exs
-config :vitex,
-  # This is mandatory. Is used to read generated ViteJS manifest file.
-  endpoint: MyAppWeb.Endpoint,
-  # If true it delegates assets to vite dev server. If false it uses generated
-  # vitejs manifest file
-  dev_mode: config_env() == :dev,
+# lib/my_app/application.ex
+defmodule MyApp.Application do
+  @moduledoc false
 
-  # Optional: pass a custom manifest path. By default "priv/static/assets"
-  manifest_path: "...",
-  # Optional: pass a custom manifest name. By default "manifest"
-  manifest_name: "...",
+  use Application
 
-  # Optional: pass a custom vite host. By default it runs "http://localhost:5173"
-  vite_host: "...",
+  @impl true
+  def start(_type, _args) do
+    children = [
+      {
+        Vitex,
+        # If true it delegates assets to vite dev server. If false it uses generated vitejs manifest file.
+        dev_mode: config_env() == :dev,
+        # This is mandatory. Is used to read generated ViteJS manifest file.
+        endpoint: MyAppWeb.Endpoint,
 
-  # Optional: this add code specific for your JS framework like React's refresh
-  js_framework: "...", # :react, :vue, :svelte,
+        # Optional: pass a custom manifest path. By default "priv/static/assets"
+        manifest_path: "...",
 
-  # Optional: Host for you assets in production. Ex.: `assets.myapp.com`. By
-  # default it assumes same site so it renders "/assets/app.38FTlhdd.js"
-  assets_host: "...", # Used in production. In development assets are handled by Vite dev server
+        # Optional: pass a custom manifest name. By default "manifest"
+        manifest_name: "...",
 
-  # Optional. By default is already :nodejs. But in the future we could add :bun
-  # or :deno runtime for rendering inertia SSR components
-  runtime: :nodejs,
+        # Optional: pass a custom vite host. By default it runs "http://localhost:5173"
+        vite_host: "...",
+
+        # Optional: this add code specific for your JS framework like React's refresh
+        js_framework: "...", # :react, :vue, :svelte,
+
+        # Optional: Host for you assets in production. Ex.: `assets.myapp.com`. By
+        # default it assumes same site so it renders "/assets/app.38FTlhdd.js"
+        assets_host: "...", # Used in production. In development assets are handled by Vite dev server
+
+        # Optional. By default is already :nodejs. But in the future we could add :bun
+        # or :deno runtime for rendering inertia SSR components
+        runtime: :nodejs,
+      }
+    ]
+  end
+end
 ```
 
 ## Add Vitex.HTML module

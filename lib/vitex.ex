@@ -1,8 +1,38 @@
 defmodule Vitex do
+  alias Vitex.{Config, ConfigStore}
+
   @moduledoc """
   The ViteJS integration for Phoenix Framework and InertiaJS.
-  It provides a set of helpers to use ViteJS in your Phoenix application.
+
+  This module must be supervised with configuration passed at runtime:
+
+      children = [
+        {Vitex, dev_mode: true, endpoint: MyAppWeb.Endpoint}
+      ]
+
   """
+
+  def child_spec(opts) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, [opts]},
+      type: :worker,
+      restart: :permanent,
+      shutdown: 500
+    }
+  end
+
+  @spec start_link([Config.config_opt()]) :: {:ok, pid()} | {:error, term()}
+  def start_link(opts) do
+    ConfigStore.start_link([])
+    init(opts)
+    {:ok, self()}
+  end
+
+  @spec init([Config.config_opt()]) :: Config.t()
+  def init(opts \\ []) do
+    ConfigStore.init(opts)
+  end
 
   def default_vite_host, do: "http://localhost:5173"
 

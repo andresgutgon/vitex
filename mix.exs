@@ -74,7 +74,7 @@ defmodule Vitex.MixProject do
       # {:inertia, "~> 2.3", optional: true}
       {:inertia,
        git: "https://github.com/andresgutgon/inertia-phoenix.git",
-       ref: "dc4ec838880ab24958f95ec4a360f6f647dbb8fa"}
+       branch: "feature/inertia-vitejs-integration"}
     ]
   end
 
